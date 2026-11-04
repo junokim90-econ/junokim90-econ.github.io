@@ -1,0 +1,187 @@
+/* =====================================================================
+   사이트 스타일 (시안 D: 프로필+카드 디자인, 메뉴별 페이지 분리)
+   색·글꼴은 :root 변수만 바꾸면 전체에 반영됨
+   ===================================================================== */
+:root{
+  --ink:#1d2433; --muted:#5b6475; --line:#e3e6ec; --bg:#ffffff; --soft:#f6f7f9;
+  --accent:#2f4d7a; --tag-bg:#e8eef7;
+  --wrap:1080px; --side:280px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font-family:Inter,"Noto Sans KR",system-ui,sans-serif;font-size:16px;line-height:1.6}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.ko{font-family:"Noto Sans KR",Inter,sans-serif}
+
+/* 상단 메뉴 */
+.top{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+.top .in{max-width:var(--wrap);margin:0 auto;padding:12px 16px;display:flex;gap:22px;align-items:center;font-size:15px;flex-wrap:wrap}
+.top .brand{margin-right:auto;font-weight:600;color:var(--ink)}
+.top a{color:var(--ink)} .top a.on{color:var(--accent);font-weight:600}
+
+/* 사진 띠 (Home은 높게, 하위 페이지는 낮게). 글씨가 읽히도록 아래쪽을 어둡게 덮음 */
+.banner{position:relative;background:#0f2442 center/cover no-repeat;color:#fff}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,36,.05) 0%,rgba(8,18,36,.25) 45%,rgba(8,18,36,.78) 100%)}
+.banner .in{position:relative;z-index:1;max-width:var(--wrap);margin:0 auto;padding:0 16px;height:100%}
+.banner.home{height:420px}
+.banner.home .in{display:grid;grid-template-columns:var(--side) 1fr;gap:48px;align-items:end;padding-bottom:28px}
+.banner.home h1{font-size:44px;font-weight:600;margin:0;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.banner.home .aff{font-size:16px;opacity:.95;margin-top:2px}
+.banner.home .aff a{color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.5)}
+.banner.page{height:var(--bh,210px)}
+.banner.page .in{display:flex;align-items:flex-end;padding-bottom:26px}
+.banner.page h1{font-size:34px;font-weight:600;margin:0;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.banner.page h1 small{display:block;font-size:15px;font-weight:400;opacity:.9;margin-top:4px}
+.pills.light{justify-content:flex-start}
+.pills.light a{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.08)}
+.pills.light a:hover{background:#fff;color:var(--ink);text-decoration:none}
+
+/* Home 소개: 사진이 위쪽 띠에 걸쳐 내려옴 */
+.about .in{max-width:var(--wrap);margin:0 auto;padding:0 16px 48px;display:grid;grid-template-columns:var(--side) 1fr;gap:48px}
+.about .bio{padding-top:32px}
+.portrait{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;border-radius:10px;border:6px solid #fff;box-shadow:0 12px 32px rgba(15,36,66,.22);display:block;background:#dfe5ee}
+.pcol .portrait{margin-top:-150px;position:relative;z-index:2}
+.portrait.initials{display:flex;align-items:center;justify-content:center;font-size:56px;color:#fff;background:linear-gradient(135deg,#c9d3e3,#8fa1bf)}
+.portrait.small{max-width:240px;margin-bottom:16px}
+
+/* 하위 페이지 왼쪽 열 */
+.side .toc{position:sticky;top:72px;display:flex;flex-direction:column;gap:6px}
+.side .toc a{color:var(--ink);font-size:15px;padding:6px 10px;border-left:3px solid var(--line)}
+.side .toc a:hover{border-left-color:var(--accent);text-decoration:none;color:var(--accent)}
+.side .toc span{color:var(--muted);font-size:13px}
+.sidenote{font-size:14px;color:var(--muted);margin:0}
+.sidecontact a{display:block;font-size:14px;margin:4px 0}
+
+/* Home 상단 프로필 (사진 띠가 없을 때 쓰는 기존 형태) */
+.hero{max-width:var(--wrap);margin:0 auto;padding:56px 16px 40px;display:grid;grid-template-columns:var(--side) 1fr;gap:48px;align-items:center}
+.hero .card{text-align:center}
+.avatar{width:200px;height:200px;border-radius:50%;margin:0 auto 16px;object-fit:cover;display:block}
+.avatar.initials{background:linear-gradient(135deg,#c9d3e3,#8fa1bf);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:48px}
+.hero h1{font-weight:500;font-size:28px;margin:0}
+.hero .aff{color:var(--accent);font-size:15px}
+.pills{margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.pills a{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px}
+.bio p{margin:0 0 12px;font-size:17px}
+.facts{display:flex;gap:40px;margin-top:18px;font-size:15px;flex-wrap:wrap}
+.facts h4{margin:0 0 6px;font-size:16px}
+.facts ul{margin:0;padding-left:18px;color:var(--muted)}
+.contact{margin-top:14px;font-size:14px;color:var(--muted)}
+
+/* 회색 띠 섹션 (제목 왼쪽, 내용 오른쪽) */
+.band{background:var(--soft);border-top:1px solid var(--line);min-height:60vh}
+.band .in{max-width:var(--wrap);margin:0 auto;padding:48px 16px 64px;display:grid;grid-template-columns:var(--side) 1fr;gap:48px}
+.band h2{font-weight:500;font-size:28px;margin:0;line-height:1.3}
+.band h2 small{display:block;font-size:14px;color:var(--muted);margin-top:6px}
+.grp{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:26px 0 10px}
+.grp:first-child{margin-top:0}
+
+/* 논문 카드 */
+.pcard{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.pcard.slim{padding:12px 18px}
+.pcard .meta{font-size:13px;color:var(--muted)}
+.pcard .t{font-size:19px;font-weight:600;color:var(--accent);margin:4px 0;line-height:1.35}
+.pcard.slim .t{font-size:16px;margin:0}
+.pcard .note{font-size:13px;color:var(--muted);font-style:italic}
+.pcard .abs{font-size:14px;color:var(--muted);margin:8px 0 4px}
+.btns{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;border:1px solid var(--accent);color:var(--accent);border-radius:4px;padding:2px 10px;font-size:13px;cursor:pointer;background:#fff;font-family:inherit;line-height:1.6}
+.btn:hover{background:var(--accent);color:#fff;text-decoration:none}
+details.abstract summary{list-style:none} details.abstract summary::-webkit-details-marker{display:none}
+.more{font-size:15px;font-weight:500;display:flex;gap:20px;flex-wrap:wrap}
+
+/* 정책연구 한 줄 목록 + 유형 필터 */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.plist{background:#fff;border:1px solid var(--line);border-radius:8px}
+.prow{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 18px;border-bottom:1px solid var(--line);font-size:15px}
+.prow:last-child{border-bottom:0}
+.prow .yr{color:var(--muted);font-size:13px}
+.prow .src{display:block;color:var(--muted);font-size:13px}
+.tag{font-size:11px;border-radius:4px;padding:1px 6px;background:var(--tag-bg);color:var(--accent);margin-right:6px;white-space:nowrap;font-family:Inter,sans-serif}
+.tag.role{background:#10069F;color:#fff}
+.lang{font-size:12px;color:var(--muted);font-style:italic;margin-left:6px;white-space:nowrap}
+/* 정책연구: 역할(연구책임/공동) → 과제 유형 소제목 → 과제 행 */
+.pgroup{margin-bottom:40px}
+.pgroup > h3{font-size:22px;font-weight:600;margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid #10069F}
+.pgroup > h3 .ko{font-weight:400;color:var(--muted);font-size:16px}
+.psub{margin-bottom:20px}
+.psub h4{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 8px;font-weight:600;display:flex;align-items:center;gap:8px}
+.psub h4 .ko{text-transform:none;letter-spacing:0;font-weight:400}
+.n{display:inline-block;min-width:20px;text-align:center;font-size:11px;background:var(--tag-bg);color:var(--accent);border-radius:999px;padding:0 6px;letter-spacing:0}
+/* 접히는 소제목 (수탁연구과제 등) */
+details.fold > summary{list-style:none;cursor:pointer}
+details.fold > summary::-webkit-details-marker{display:none}
+details.fold > summary h4{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:0}
+details.fold > summary:hover h4{border-color:var(--accent)}
+details.fold[open] > summary h4{border-radius:8px 8px 0 0;border-bottom:0;margin:0}
+details.fold[open] > .plist{border-radius:0 0 8px 8px}
+.toggle{margin-left:auto;font-size:12px;text-transform:none;letter-spacing:0;color:var(--accent);font-weight:500}
+.toggle::after{content:" ▾"}
+details.fold[open] .toggle{font-size:0}
+details.fold[open] .toggle::after{content:"Hide ▴";font-size:12px}
+@media print{details.fold > .plist{display:block}}
+
+.proj{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line)}
+.proj:last-child{border-bottom:0}
+.proj .yr{color:var(--muted);font-size:13px;padding-top:2px}
+.pt{font-size:15px;font-weight:500;line-height:1.45}
+.pm{font-size:13px;color:var(--muted);margin-top:2px}
+.pen{font-size:13px;color:var(--ink);opacity:.75;font-style:italic;margin-top:1px}
+.plinks{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+.plink{font-size:12px;border:1px solid var(--line);border-radius:4px;padding:1px 8px;color:var(--accent);background:var(--soft)}
+.plink:hover{border-color:var(--accent);text-decoration:none}
+.status{font-size:11px;font-weight:500;color:#9a5b00;background:#fff3dc;border-radius:4px;padding:1px 6px;margin-left:8px;white-space:nowrap;font-family:Inter,sans-serif}
+.side .tochead{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:14px 0 2px}
+.side .sidenote + .toc{margin-top:18px}
+.cvrole{font-weight:600;font-size:15px;color:#10069F;margin:14px 0 4px}
+.cvrole:first-child{margin-top:0}
+
+.empty{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:24px;color:var(--muted);font-size:15px}
+
+/* CV 페이지 */
+.cv{background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px 28px}
+.cv section{margin-bottom:24px} .cv section:last-child{margin-bottom:0}
+.cv h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:4px;margin:0 0 10px}
+.cvrow{display:grid;grid-template-columns:1fr auto;gap:16px;font-size:15px;margin:6px 0;line-height:1.45}
+.cvrow .when{color:var(--muted);font-size:13px;white-space:nowrap;text-align:right}
+.cvrow{row-gap:0}
+.cvsub{color:var(--muted);font-size:14px;grid-column:1 / -1}
+.cvinst{font-size:15px;margin:12px 0 2px} .cvinst:first-of-type{margin-top:0}
+.cvp{margin:0;font-size:15px}
+.printhead{display:none}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 16px;border-top:1px solid var(--line)}
+footer .credits{font-size:11px;margin-top:6px;opacity:.8}
+footer .credits a{color:var(--muted);text-decoration:underline}
+
+@media (max-width:760px){
+  .hero,.band .in,.about .in{grid-template-columns:1fr;gap:24px}
+  .banner.home{height:320px}
+  .banner.home .in{grid-template-columns:1fr}
+  .banner.home .in > div:first-child{display:none}
+  .banner.home h1{font-size:34px}
+  .banner.page{height:calc(var(--bh,210px) * .76)}
+  .pcol .portrait{margin-top:-60px;max-width:220px}
+  .about .bio{padding-top:0}
+  .side .toc{position:static;flex-direction:row;flex-wrap:wrap}
+  .prow{grid-template-columns:44px 1fr}
+  .prow > a{grid-column:2}
+  .top .in{gap:14px}
+}
+/* 인쇄 = CV PDF 레이아웃: 사진·메뉴·왼쪽 열을 빼고 본문만 A4 한 단으로 */
+@page{size:A4;margin:16mm 16mm 18mm}
+@media print{
+  body{font-size:10.5pt}
+  .top,footer,.chips,.btns,.banner,.side{display:none !important}
+  .band{background:#fff;border:0;min-height:0}
+  .band .in{display:block;padding:0;max-width:none}
+  .cv{border:0;padding:0}
+  .cv section{break-inside:auto;margin-bottom:14px}
+  .cv h3{break-after:avoid;font-size:10pt}
+  .cvrow,.cvp,.cvinst{font-size:10.5pt;margin:3px 0;break-inside:avoid}
+  .cvrow .when,.cvsub{font-size:9.5pt}
+  .printhead{display:block;text-align:center;margin-bottom:18px;font-size:10pt;color:var(--muted)}
+  .printhead .pname{font-size:22pt;font-weight:600;color:var(--ink)}
+  a{color:var(--ink)}
+}
