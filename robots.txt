@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://junokim90-econ.github.io/sitemap.xml
